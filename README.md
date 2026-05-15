@@ -1,0 +1,1 @@
+# Adaptive_AI_Hiring_Intelligence_Platform
