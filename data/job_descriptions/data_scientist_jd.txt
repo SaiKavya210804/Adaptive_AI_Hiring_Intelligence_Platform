@@ -1,0 +1,7 @@
+We are looking for a Data Scientist with experience in Python,
+SQL, Machine Learning, NLP, and Power BI.
+
+Preferred skills include Streamlit, TensorFlow,
+and model monitoring experience.
+
+Candidates should have strong analytical and communication skills.
