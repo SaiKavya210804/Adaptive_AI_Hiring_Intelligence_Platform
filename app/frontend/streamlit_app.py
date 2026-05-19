@@ -159,7 +159,7 @@ elif page == "Job Description":
         if st.button("Next → Rankings", key="btn_next_jd"):
             st.session_state.current_page = "Candidate Rankings"
             st.rerun()
-            
+
 # ---------------------------------------------------
 # PAGE 3 — CANDIDATE RANKINGS
 # ---------------------------------------------------
@@ -249,29 +249,6 @@ elif page == "Candidate Rankings":
 # ---------------------------------------------------
 # PAGE 4 — ANALYTICS
 # ---------------------------------------------------
-
-# elif page == "Analytics":
-
-#     st.header("Recruitment Analytics Dashboard")
-
-#     st.info("Analytics visualizations will appear here.")
-
-#     analytics_data = {
-#         "Metric": [
-#             "Total Resumes",
-#             "Average Match Score",
-#             "Top Candidate Score"
-#         ],
-#         "Value": [
-#             25,
-#             "78%",
-#             "92%"
-#         ]
-#     }
-
-#     analytics_df = pd.DataFrame(analytics_data)
-
-#     st.table(analytics_df)
 
 elif page == "Analytics":
 
