@@ -159,7 +159,7 @@ elif page == "Job Description":
         if st.button("Next → Rankings", key="btn_next_jd"):
             st.session_state.current_page = "Candidate Rankings"
             st.rerun()
-
+            
 # ---------------------------------------------------
 # PAGE 3 — CANDIDATE RANKINGS
 # ---------------------------------------------------
