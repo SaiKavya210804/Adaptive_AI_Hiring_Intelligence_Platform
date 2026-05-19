@@ -5,19 +5,35 @@ from app.services.ranking_engine import rank_candidates
 # Resume folder
 resume_folder = "data/resumes"
 
-# JD path
+# Job description path
 jd_path = "data/job_descriptions/data_scientist_jd.txt"
 
 
-# Parse JD
+# Parse job description
 jd_result = parse_job_description(jd_path)
 
 
-# Rank all candidates
+# Handle missing JD file
+if "error" in jd_result:
+
+    print(f"\nError: {jd_result['error']}")
+
+    exit()
+
+
+# Rank candidates
 ranked_candidates = rank_candidates(
     resume_folder,
     jd_result["required_skills"]
 )
+
+
+# Handle empty rankings
+if not ranked_candidates:
+
+    print("\nNo candidates found or no resumes could be processed.")
+
+    exit()
 
 
 print("\n===== CANDIDATE RANKINGS =====\n")
@@ -31,8 +47,13 @@ for index, candidate in enumerate(ranked_candidates, start=1):
 
     print(f"Match Percentage: {candidate['match_percentage']}%")
 
-    print(f"Matched Skills: {candidate['matched_skills']}")
+    print(f"Matched Skills: "
+          f"{candidate['matched_skills']}")
 
-    print(f"Missing Skills: {candidate['missing_skills']}")
+    print(f"Missing Skills: "
+          f"{candidate['missing_skills']}")
+
+    print(f"Explanation: "
+          f"{candidate['explanation']}")
 
     print("-" * 50)

@@ -1,3 +1,6 @@
+import re
+
+
 KNOWN_SKILLS = [
     "Python",
     "SQL",
@@ -17,29 +20,48 @@ KNOWN_SKILLS = [
 
 
 def extract_required_skills(job_description):
+    """
+    Extract required skills from job description text.
+    """
 
     found_skills = []
 
     jd_lower = job_description.lower()
 
     for skill in KNOWN_SKILLS:
-        if skill.lower() in jd_lower:
+
+        # Prevent false matches like:
+        # Python matching Pythonic
+        pattern = rf"\b{re.escape(skill.lower())}\b"
+
+        if re.search(pattern, jd_lower):
             found_skills.append(skill)
 
     return found_skills
 
 
 def parse_job_description(file_path):
+    """
+    Parse job description text file.
+    """
 
-    with open(file_path, "r", encoding="utf-8") as file:
-        jd_text = file.read()
+    try:
 
-    extracted_data = {
-        "required_skills": extract_required_skills(jd_text),
-        "raw_text": jd_text
-    }
+        with open(file_path, "r", encoding="utf-8") as file:
+            jd_text = file.read()
 
-    return extracted_data
+        extracted_data = {
+            "required_skills": extract_required_skills(jd_text),
+            "raw_text": jd_text
+        }
+
+        return extracted_data
+
+    except FileNotFoundError:
+
+        return {
+            "error": f"File not found: {file_path}"
+        }
 
 
 if __name__ == "__main__":
